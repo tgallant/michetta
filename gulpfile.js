@@ -22,6 +22,8 @@ gulp.task('html', () => {
     data: 'src/data/'
   }
 
+  panini.refresh()
+
   gulp.src('src/pages/**/*.html')
     .pipe(panini(paniniOptions))
     .pipe(gulp.dest('build'))
