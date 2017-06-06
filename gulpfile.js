@@ -30,7 +30,7 @@ gulp.task('html', () => {
 })
 
 gulp.task('js', () => {
-  return rollup({
+  const rollupOptions = {
     entry: 'assets/js/index.js',
     plugins: [
       resolve({
@@ -43,13 +43,16 @@ gulp.task('js', () => {
       }),
       uglify()
     ]
-  }).then(bundle => {
-    return bundle.write({
-      format: 'iife',
-      dest: 'build/js/main.js',
-      sourceMap: true
+  }
+
+  return rollup(rollupOptions)
+    .then(bundle => {
+      return bundle.write({
+        format: 'iife',
+        dest: 'build/js/main.js',
+        sourceMap: true
+      })
     })
-  })
 })
 
 gulp.task('css', () => {
